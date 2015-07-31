@@ -28,15 +28,14 @@ import os
 """
 def movingAverage(loss, window):
 	mas = []
-	i = 0
-	mas = []
-	while i + window - 1 < len(loss):
-	    sum = 0
-	    for j in range(window):
-	        sum += loss[i + j]
-	    mas.append(sum / window)
-	    i += 1
-	mas[:0] = [mas[0]] * (window-1)
+	for i in range(len(loss)):
+		j = i - window + 1
+		if (j < 0):
+			j = 0
+		sum = 0.0
+		for k in range(j, i + 1):
+			sum += loss[k]
+		mas.append(sum / (i - j + 1.0))
 	return mas
 
 plotname = sys.argv[1]
