@@ -33,9 +33,9 @@ def movingAverage(loss, window):
 		if (j < 0):
 			j = 0
 		sum = 0.0
-		for k in range(j, i + 1):
-			sum += loss[k]
-		mas.append(sum / (i - j + 1.0))
+		for k in range(window):
+			sum += loss[j + k]
+		mas.append(sum / window)
 	return mas
 
 plotname = sys.argv[1]
